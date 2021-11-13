@@ -1,0 +1,106 @@
+Called from list_ctor() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(32),
+head = 0 tail = 0 free = 0
+        0 
+data    0 
+next    0 
+prev    0 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 1 free = 0
+        0   1 
+data    0  10 
+next    1   0 
+prev    1   0 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 3
+        0   1   2   3 
+data    0  10  20   0 
+next    1   2   0   0 
+prev    2   0   1  -1 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 0
+        0   1   2   3 
+data    0  10  20   6 
+next    1   3   0   2 
+prev    2   0   3   1 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 5
+        0   1   2   3   4   5   6   7 
+data    0  10  20   6  44   0   0   0 
+next    1   3   0   4   2   6   7   0 
+prev    2   0   4   1   3  -1  -1  -1 
+
+Called from delete_this_elem() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(147),
+head = 1 tail = 4 free = 2
+        0   1   2   3   4   5   6   7 
+data    0  10   0   6  44   0   0   0 
+next    1   3   5   4   0   6   7   0 
+prev    4   0  -1   1   3  -1  -1  -1 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 5
+        0   1   2   3   4   5   6   7 
+data    0  10  37   6  44   0   0   0 
+next    1   3   0   4   2   6   7   0 
+prev    2   0   4   1   3  -1  -1  -1 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 6
+        0   1   2   3   4   5   6   7 
+data    0  10  37   6  44   7   0   0 
+next    1   5   0   4   2   3   7   0 
+prev    2   0   4   5   3   1  -1  -1 
+
+Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10  37   6  44   7   9   0 
+next    1   6   0   4   2   3   5   0 
+prev    2   0   4   5   3   6   1  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10  37   6  44   7   9   0 
+next    1   6   0   4   2   3   5   0 
+prev    2   0   4   5   3   6   1  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   6  44   7  37   0 
+next    1   6   5   4   2   3   0   0 
+prev    2   0   1   5   3   6   4  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7  44   6  37   0 
+next    1   6   5   3   2   3   0   0 
+prev    2   0   1   5   3   5   4  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9  44   7   6  37   0 
+next    1   6   5   4   3   3   0   0 
+prev    2   0   4   3   5   5   4  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 2 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   6   7  44  37   0 
+next    1   6   5   3   3   5   0   0 
+prev    2   0   4   5   3   3   4  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   6   7  37  44   0 
+next    1   6   5   5   3   6   5   0 
+prev    6   0   4   5   3   5   3  -1 
+
+Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\User

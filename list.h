@@ -17,7 +17,7 @@
         fprintf(Lst->logs, "Called from %s() at %s(%d),\n", __FUNCTION__, __FILE__, __LINE__);\
         list_dump(Lst, reason);\
 
-    int CHANGE = 2; // static, const, define
+    static int CHANGE = 2;
 
     typedef enum errors{
         ALL_OK           =  0,
@@ -27,7 +27,7 @@
         NULL_FILE        = -4,
     }errors_t;
 
-    char *error_names[] = { // static const
+    static const char *error_names[] = {
         "All is ok",
         "Not enough memory",
         "Push after an empty element",
@@ -52,7 +52,8 @@
     int delete_this_elem(List* Lst, int place);
     int list_dump(List* Lst, errors_t reason);
     int print_graph(List* Lst);
-    int sort_list(int begining, int amount_elem, List* Lst);
-    int physic_to_logic_number(int place);
+    int sort_list(List* Lst, int (*sort_func)(List* Lst));
+    int sort_func(List* Lst);
+    int physic_to_logic_number(List* Lst, int place);
 
 #endif // LIST_H_INCLUDED

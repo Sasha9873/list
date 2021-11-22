@@ -42,11 +42,11 @@ int insert_after(List* Lst, int place, int value)
         int num = 0;
 
         if(Lst->free == 0){             //there is no empty place left
-            printf("next1 place %d\n", Lst->next[place]);
+            //printf("next1 place %d\n", Lst->next[place]);
             int* new_data_memory = (int*)realloc(Lst->data, sizeof(int)*CHANGE*Lst->capacity);
             int* new_next_memory = (int*)realloc(Lst->next, sizeof(int)*CHANGE*Lst->capacity);
             int* new_prev_memory = (int*)realloc(Lst->prev, sizeof(int)*CHANGE*Lst->capacity);
-            printf("prev = %p\n", new_prev_memory);
+            //printf("prev = %p\n", new_prev_memory);
 
             if(new_data_memory == NULL || new_next_memory == NULL || new_prev_memory == NULL){
                 DUMP(NO_MEMORY);
@@ -70,7 +70,7 @@ int insert_after(List* Lst, int place, int value)
                         Lst->next[index] = index + 1;
                     Lst->next[Lst->capacity - 1] = 0;
                 }
-                printf("next1 place %d\n", Lst->next[place]);
+                //printf("next1 place %d\n", Lst->next[place]);
                 //list_print(Lst);
             }
         }
@@ -79,9 +79,9 @@ int insert_after(List* Lst, int place, int value)
             Lst->free = Lst->next[Lst->free];
         }
 
-        printf("\ncapacity = %d\nnum: ", Lst->capacity);
+        /*printf("\ncapacity = %d\nnum: ", Lst->capacity);
         printf("\nnum = %d next = %d\n", num, Lst->next[num]);
-        printf("next place %d\n", Lst->next[place]);
+        printf("next place %d\n", Lst->next[place]);*/
 
         Lst->data[num] = value;
 
@@ -91,28 +91,6 @@ int insert_after(List* Lst, int place, int value)
         Lst->prev[num] = place;
         Lst->prev[Lst->next[num]] = num;
 
-        /*if(Lst->next[place] != 0)
-            Lst->prev[Lst->next[place]] = num;
-
-        if(Lst->next[0] == 0){
-            Lst->next[num] = 0;
-            Lst->prev[num] = 0;
-            //Lst->head = num;
-            //Lst->tail = num;
-            Lst->next[0] = num;
-            //Lst->prev[0] = num;
-        }
-        else{
-            printf("num = %d place = %d \n", num, place);
-            Lst->prev[num] = place;
-            printf("next place %d\n", Lst->next[place]);
-            Lst->next[num] = Lst->next[place];
-
-            Lst->next[place] = num;
-
-            if(Lst->next[num] == 0)
-                Lst->tail = num;
-        }*/
         #ifdef IS_DUMP
             DUMP(ALL_OK);
         #endif // IS_DUMP
@@ -155,29 +133,6 @@ int delete_this_elem(List* Lst, int place)  // delete elem which is at the place
         return DELETE_ZERO_ELEM;
     }
 
-/*    if(Lst->tail == place){
-        Lst->next[Lst->prev[place]] = 0;
-        Lst->tail = Lst->prev[place];
-    }
-
-
-    if(Lst->head != place){
-        Lst->next[Lst->next[place]] = 0;
-        Lst->prev[place] = Lst->next[place];
-    }
-
-    else
-        Lst->head = Lst->next[place];
-
-    printf("%d\n", Lst->prev[place]);
-
-
-    Lst->data[place] = 0;
-
-    Lst->next[place] = Lst->free;
-    Lst->free = place;
-
-    Lst->prev[place] = -1;*/
 }
 
 int list_dump(List* Lst, errors_t reason)
@@ -212,6 +167,8 @@ int list_dump(List* Lst, errors_t reason)
         fprintf(Lst->logs,"%3d ", Lst->prev[i]);
 
     fprintf(Lst->logs,"\n\n");
+
+    return ALL_OK;
 }
 
 int print_graph(List* Lst)
@@ -224,14 +181,14 @@ int print_graph(List* Lst)
 
     fprintf(Lst->graph, " {\n    node[shape=\"plaintext\",style=\"invisible\"];\n    edge [color=\"white\"];\n    ");
 
-    fprintf(Lst->graph, "    \"0\"");
-    for(int index = 1; index < Lst->capacity + 1; index++)
+    fprintf(Lst->graph, "    \"1\"");
+    for(int index = 2; index < Lst->capacity + 1; index++)
         fprintf(Lst->graph, "->\"%d\"", index);
     fprintf(Lst->graph, "\n }\n");
 
     fprintf(Lst->graph, "edge [color=\"blue\"];");
 
-    fprintf(Lst->graph, " {rank = same; \"0\";box0;}\n \"box0\"[shape=\"record\", label = \"index|data|next|prev\"];\n");
+    /*fprintf(Lst->graph, " {rank = same; \"0\";box0;}\n \"box0\"[shape=\"record\", label = \"index|data|next|prev\"];\n");*/
     for(int index = 1; index < Lst->capacity + 1; index++){
         fprintf(Lst->graph, "{rank = same; \"%d\";box%d;}\n", index, index);
 
@@ -267,10 +224,16 @@ int print_graph(List* Lst)
 
     fprintf(Lst->graph, "}");
 
+    return ALL_OK;
+
 }
-// insertion sort
-// pointer to sorting function
-int sort_list(List* Lst)
+
+int sort_list(List* Lst, int (*sort_func)(List* Lst))
+{
+    return sort_func(Lst);
+}
+
+int sort_func(List* Lst)
 {
     int current = Lst->next[0];
     int exchange = 0;
@@ -321,63 +284,8 @@ int sort_list(List* Lst)
     }
 
     return num;
-
 }
 
-/*int Sort_List_Too_slow_slow_call_only_at_night(List* Lst)
-{
-    int* new_data_memory = (int*)realloc(Lst->data, sizeof(int)*CHANGE*Lst->capacity);
-    int* new_next_memory = (int*)realloc(Lst->next, sizeof(int)*CHANGE*Lst->capacity);
-    int* new_prev_memory = (int*)realloc(Lst->prev, sizeof(int)*CHANGE*Lst->capacity);
-
-    if(new_data_memory == NULL || new_next_memory == NULL || new_prev_memory == NULL)
-        return NO_MEMORY;
-    else{
-        int index = 0, free = 0;
-        for(index = 0; index < )
-    }
-}
-
-/*void Sort_List_Too_slow_slow_call_only_at_night(int begining, int amount_elem, List* Lst)
-{
-   int left = begining, right = amount_elem;
-   int pivot = Lst->prev[(left + right) / 2]; // Опорным элементом возьмём средний
-
-   while (left <= right)
-   {
-    while ((unsigned int)Lst->prev[left] < pivot)
-        left++;
-    while ((unsigned int)Lst->prev[right] > pivot)
-        right--;
-    if (left <= right){
-        if(Lst->free == left)
-            Lst->free = right;
-        if(Lst->free == right)
-            Lst->free = left;
-
-        if(Lst->tail == left){
-            printf("r %d\n", right);
-            Lst->tail = right;
-        }
-
-        if(Lst->tail == right){
-            printf("lf %d\n", left);
-            Lst->tail = left;
-        }
-
-        std::swap(Lst->next[left], Lst->next[right]);
-        std::swap(Lst->data[left], Lst->data[right]);
-        std::swap(Lst->prev[left++], Lst->prev[right--]);
-    }
-
-    }
-    if (begining < right)
-        Sort_List_Too_slow_slow_call_only_at_night(begining, right, Lst);
-    if (amount_elem > left)
-        Sort_List_Too_slow_slow_call_only_at_night(left, amount_elem, Lst);
-
-    Lst->head = 1;
-} // qsort (0, n-1);*/
 
 int physic_to_logic_number(List* Lst, int place)
 {

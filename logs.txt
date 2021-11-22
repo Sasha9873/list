@@ -19,6 +19,20 @@ data    0  10  20   0
 next    1   2   0   0 
 prev    2   0   1  -1 
 
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 2 free = 3
+        0   1   2   3 
+data    0  10  20   0 
+next    1   2   0   0 
+prev    2   0   1  -1 
+
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 2 free = 3
+        0   1   2   3 
+data    0  10  20   0 
+next    1   2   0   0 
+prev    2   0   1  -1 
+
 Called from insert_after() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(117),
 head = 1 tail = 2 free = 0
         0   1   2   3 
@@ -61,46 +75,51 @@ data    0  10  37   6  44   7   9   0
 next    1   6   0   4   2   3   5   0 
 prev    2   0   4   5   3   6   1  -1 
 
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
 head = 1 tail = 2 free = 7
         0   1   2   3   4   5   6   7 
 data    0  10  37   6  44   7   9   0 
 next    1   6   0   4   2   3   5   0 
 prev    2   0   4   5   3   6   1  -1 
 
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
-head = 1 tail = 2 free = 7
-        0   1   2   3   4   5   6   7 
-data    0  10   9   6  44   7  37   0 
-next    1   6   5   4   2   3   0   0 
-prev    2   0   1   5   3   6   4  -1 
-
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
-head = 1 tail = 2 free = 7
-        0   1   2   3   4   5   6   7 
-data    0  10   9   7  44   6  37   0 
-next    1   6   5   3   2   3   0   0 
-prev    2   0   1   5   3   5   4  -1 
-
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
-head = 1 tail = 2 free = 7
-        0   1   2   3   4   5   6   7 
-data    0  10   9  44   7   6  37   0 
-next    1   6   5   4   3   3   0   0 
-prev    2   0   4   3   5   5   4  -1 
-
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
-head = 1 tail = 2 free = 7
-        0   1   2   3   4   5   6   7 
-data    0  10   9   6   7  44  37   0 
-next    1   6   5   3   3   5   0   0 
-prev    2   0   4   5   3   3   4  -1 
-
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(247),
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
 head = 1 tail = 6 free = 7
         0   1   2   3   4   5   6   7 
-data    0  10   9   6   7  37  44   0 
-next    1   6   5   5   3   6   5   0 
-prev    6   0   4   5   3   5   3  -1 
+data    0  10   9   6  44   7  37   0 
+next    1   2   5   4   6   3   0   0 
+prev    6   0   1   5   3   2   4  -1 
 
-Called from Sort_List_Too_slow_slow_call_only_at_night() at C:\User
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7  44   6  37   0 
+next    1   2   3   5   6   4   0   0 
+prev    6   0   1   2   5   3   4  -1 
+
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7   6  44  37   0 
+next    1   2   3   4   5   6   0   0 
+prev    6   0   1   2   3   4   5  -1 
+
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7   6  44  37   0 
+next    1   2   3   4   5   6   0   0 
+prev    6   0   1   2   3   4   5  -1 
+
+Called from sort_list() at C:\Users\lenovo\Desktop\infa\C\summer_school\list\list.cpp(317),
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7   6  44  37   0 
+next    1   2   3   4   5   6   0   0 
+prev    6   0   1   2   3   4   5  -1 
+
+head = 1 tail = 6 free = 7
+        0   1   2   3   4   5   6   7 
+data    0  10   9   7   6  44  37   0 
+next    1   2   3   4   5   6   0   0 
+prev    6   0   1   2   3   4   5  -1 
+

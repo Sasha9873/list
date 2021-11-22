@@ -182,6 +182,9 @@ int delete_this_elem(List* Lst, int place)  // delete elem which is at the place
 
 int list_dump(List* Lst, errors_t reason)
 {
+    if(Lst->logs == NULL)
+        return NULL_FILE;
+
     if(reason != ALL_OK)
         fprintf(Lst->logs, "Dump was called because %s(%d)\n", error_names[abs(reason)], reason);
 
@@ -211,7 +214,63 @@ int list_dump(List* Lst, errors_t reason)
     fprintf(Lst->logs,"\n\n");
 }
 
-int Sort_List_Too_slow_slow_call_only_at_night(List* Lst)
+int print_graph(List* Lst)
+{
+
+    if(Lst->graph == NULL)
+        return NULL_FILE;
+
+    fprintf(Lst->graph, "digraph G{\n rankdir=LR;\n node[fontsize=11];\n node[margin=\"0.01\"];\n");
+
+    fprintf(Lst->graph, " {\n    node[shape=\"plaintext\",style=\"invisible\"];\n    edge [color=\"white\"];\n    ");
+
+    fprintf(Lst->graph, "    \"0\"");
+    for(int index = 1; index < Lst->capacity; index++)
+        fprintf(Lst->graph, "->\"%d\"", index);
+    fprintf(Lst->graph, "\n }\n");
+
+    fprintf(Lst->graph, "edge [color=\"blue\"];");
+
+    /*fprintf(Lst->graph, " {rank = same; \"0\";box0;}\n \"box0\"[shape=\"record\", label = \"index|data|next|prev\"];\n");*/
+    for(int index = 0; index < Lst->capacity; index++){
+        fprintf(Lst->graph, "{rank = same; \"%d\";box%d;}\n", index, index);
+
+        if(Lst->prev[index] == -1){
+            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"green\", label = \"index = %d|data = %d|", index, index, Lst->data[index]);
+        }
+        else
+            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"white\", label = \"index = %d|data = %d|", index, index, Lst->data[index]);
+        fprintf(Lst->graph, "<f%d>next = %d|prev = %d\"];\n\n", index, Lst->next[index], Lst->prev[index]);
+    }
+
+    if(Lst->next[0] != 0)
+        fprintf(Lst->graph, " box1");
+
+    int index = 0;
+    while(Lst->next[index] != 0){
+        fprintf(Lst->graph, "->box%d", Lst->next[index]);
+        index = Lst->next[index];
+    }
+
+    fprintf(Lst->graph, "\n");
+
+
+    fprintf(Lst->graph, "edge [color=\"red\"];");
+
+    index = Lst->free;
+    if(index != 0 && Lst->next[index] != 0)
+        fprintf(Lst->graph, " box%d", index);
+    while(Lst->next[index] != 0){
+        fprintf(Lst->graph, "->box%d", Lst->next[index]);
+        index = Lst->next[index];
+    }
+
+    fprintf(Lst->graph, "}");
+
+}
+// insertion sort
+// pointer to sorting function
+int sort_list(List* Lst)
 {
     int current = Lst->next[0];
     int exchange = 0;
@@ -223,22 +282,35 @@ int Sort_List_Too_slow_slow_call_only_at_night(List* Lst)
 
         if(current != num){
             val = Lst->data[current];      //change data
-
             Lst->data[current] = Lst->data[num];
             Lst->data[num] = val;
 
-            exchange = Lst->next[current];      //change next
-            Lst->next[current] = Lst->next[num];
-            Lst->next[num] = exchange;
+            if(Lst->next[current] == num){
 
-            exchange = Lst->prev[current];      //change prev
-            Lst->prev[current] = Lst->prev[num];
-            Lst->prev[num] = exchange;
-            Lst->prev[Lst->next[num]] = current;
-            Lst->prev[Lst->next[current]] = num;
+                Lst->prev[current] = num;
+                Lst->prev[Lst->next[num]] = current;
 
-            Lst->next[Lst->prev[num]] = current;
-            Lst->next[Lst->prev[current]] = num;
+                Lst->next[current] = Lst->next[num];
+                Lst->next[num] = current;
+
+                Lst->prev[num] = num - 1;
+                Lst->next[num - 1] = num;
+            }
+            else{
+                exchange = Lst->next[current];      //change next
+                Lst->next[current] = Lst->next[num];
+                Lst->next[num] = exchange;
+
+                exchange = Lst->prev[current];      //change prev
+                Lst->prev[current] = Lst->prev[num];
+                Lst->prev[num] = exchange;
+                Lst->prev[Lst->next[num]] = num;
+                Lst->prev[Lst->next[current]] = current;
+
+                Lst->next[Lst->prev[num]] = num;
+                Lst->next[Lst->prev[current]] = current;
+                Lst->next[num - 1] = num;
+            }
 
         }
         #ifdef IS_DUMP
@@ -309,6 +381,9 @@ int Sort_List_Too_slow_slow_call_only_at_night(List* Lst)
 
 int physic_to_logic_number(List* Lst, int place)
 {
+    if(Lst->sorted)
+        return place;
+
     int logic = 0;
 
     if(place != 0){

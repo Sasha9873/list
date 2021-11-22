@@ -225,22 +225,22 @@ int print_graph(List* Lst)
     fprintf(Lst->graph, " {\n    node[shape=\"plaintext\",style=\"invisible\"];\n    edge [color=\"white\"];\n    ");
 
     fprintf(Lst->graph, "    \"0\"");
-    for(int index = 1; index < Lst->capacity; index++)
+    for(int index = 1; index < Lst->capacity + 1; index++)
         fprintf(Lst->graph, "->\"%d\"", index);
     fprintf(Lst->graph, "\n }\n");
 
     fprintf(Lst->graph, "edge [color=\"blue\"];");
 
-    /*fprintf(Lst->graph, " {rank = same; \"0\";box0;}\n \"box0\"[shape=\"record\", label = \"index|data|next|prev\"];\n");*/
-    for(int index = 0; index < Lst->capacity; index++){
+    fprintf(Lst->graph, " {rank = same; \"0\";box0;}\n \"box0\"[shape=\"record\", label = \"index|data|next|prev\"];\n");
+    for(int index = 1; index < Lst->capacity + 1; index++){
         fprintf(Lst->graph, "{rank = same; \"%d\";box%d;}\n", index, index);
 
-        if(Lst->prev[index] == -1){
-            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"green\", label = \"index = %d|data = %d|", index, index, Lst->data[index]);
+        if(Lst->prev[index - 1] == -1){
+            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"green\", label = \"index = %d|data = %d|", index, index - 1, Lst->data[index - 1]);
         }
         else
-            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"white\", label = \"index = %d|data = %d|", index, index, Lst->data[index]);
-        fprintf(Lst->graph, "<f%d>next = %d|prev = %d\"];\n\n", index, Lst->next[index], Lst->prev[index]);
+            fprintf(Lst->graph, " \"box%d\"[shape=\"record\", style=\"filled\", fillcolor=\"white\", label = \"index = %d|data = %d|", index, index - 1, Lst->data[index - 1]);
+        fprintf(Lst->graph, "<f%d>next = %d|prev = %d\"];\n\n", index, Lst->next[index - 1], Lst->prev[index - 1]);
     }
 
     if(Lst->next[0] != 0)
@@ -248,7 +248,7 @@ int print_graph(List* Lst)
 
     int index = 0;
     while(Lst->next[index] != 0){
-        fprintf(Lst->graph, "->box%d", Lst->next[index]);
+        fprintf(Lst->graph, "->box%d", Lst->next[index] + 1);
         index = Lst->next[index];
     }
 
@@ -259,9 +259,9 @@ int print_graph(List* Lst)
 
     index = Lst->free;
     if(index != 0 && Lst->next[index] != 0)
-        fprintf(Lst->graph, " box%d", index);
+        fprintf(Lst->graph, " box%d", index + 1);
     while(Lst->next[index] != 0){
-        fprintf(Lst->graph, "->box%d", Lst->next[index]);
+        fprintf(Lst->graph, "->box%d", Lst->next[index] + 1);
         index = Lst->next[index];
     }
 

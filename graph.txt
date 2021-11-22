@@ -5,31 +5,33 @@ digraph G{
  {
     node[shape="plaintext",style="invisible"];
     edge [color="white"];
-        "0"->"1"->"2"->"3"->"4"->"5"->"6"->"7"
+        "0"->"1"->"2"->"3"->"4"->"5"->"6"->"7"->"8"
  }
-edge [color="blue"];{rank = same; "0";box0;}
- "box0"[shape="record", style="filled", fillcolor="white", label = "index = 0|data = 0|<f0>next = 1|prev = 2"];
-
+edge [color="blue"]; {rank = same; "0";box0;}
+ "box0"[shape="record", label = "index|data|next|prev"];
 {rank = same; "1";box1;}
- "box1"[shape="record", style="filled", fillcolor="white", label = "index = 1|data = 10|<f1>next = 5|prev = 0"];
+ "box1"[shape="record", style="filled", fillcolor="white", label = "index = 0|data = 0|<f1>next = 1|prev = 2"];
 
 {rank = same; "2";box2;}
- "box2"[shape="record", style="filled", fillcolor="white", label = "index = 2|data = 37|<f2>next = 0|prev = 4"];
+ "box2"[shape="record", style="filled", fillcolor="white", label = "index = 1|data = 10|<f2>next = 5|prev = 0"];
 
 {rank = same; "3";box3;}
- "box3"[shape="record", style="filled", fillcolor="white", label = "index = 3|data = 6|<f3>next = 4|prev = 5"];
+ "box3"[shape="record", style="filled", fillcolor="white", label = "index = 2|data = 37|<f3>next = 0|prev = 4"];
 
 {rank = same; "4";box4;}
- "box4"[shape="record", style="filled", fillcolor="white", label = "index = 4|data = 44|<f4>next = 2|prev = 3"];
+ "box4"[shape="record", style="filled", fillcolor="white", label = "index = 3|data = 6|<f4>next = 4|prev = 5"];
 
 {rank = same; "5";box5;}
- "box5"[shape="record", style="filled", fillcolor="white", label = "index = 5|data = 7|<f5>next = 3|prev = 1"];
+ "box5"[shape="record", style="filled", fillcolor="white", label = "index = 4|data = 44|<f5>next = 2|prev = 3"];
 
 {rank = same; "6";box6;}
- "box6"[shape="record", style="filled", fillcolor="white", label = "index = 6|data = 0|<f6>next = 7|prev = -1"];
+ "box6"[shape="record", style="filled", fillcolor="white", label = "index = 5|data = 7|<f6>next = 3|prev = 1"];
 
 {rank = same; "7";box7;}
- "box7"[shape="record", style="filled", fillcolor="green", label = "index = 7|data = 0|<f7>next = 0|prev = -1"];
+ "box7"[shape="record", style="filled", fillcolor="green", label = "index = 6|data = 0|<f7>next = 7|prev = -1"];
 
- box1->box1->box5->box3->box4->box2
-edge [color="red"]; box6->box7}
+{rank = same; "8";box8;}
+ "box8"[shape="record", style="filled", fillcolor="green", label = "index = 7|data = 0|<f8>next = 0|prev = -1"];
+
+ box1->box2->box6->box4->box5->box3
+edge [color="red"]; box7->box8}
